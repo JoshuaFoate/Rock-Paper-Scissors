@@ -18,12 +18,11 @@ function singleRound() {
     let playerSelection = prompt("Type Rock, Paper, or Scissors!")
     if (playerSelection.toUpperCase() !== "ROCK" && playerSelection.toUpperCase() !== "PAPER" && playerSelection.toUpperCase() !== "SCISSORS") {
         alert("You need to type either rock, paper, or scissors!");
-        singleRound();
+        return singleRound();
     }
     if (playerSelection.toUpperCase() === computerSelection) {
         alert("Tie! Play again!")
-        singleRound();
-        return;
+        return singleRound();
     }
     else if(playerSelection.toUpperCase() === "ROCK" && computerSelection === "PAPER" || playerSelection.toUpperCase() === "PAPER" && computerSelection === "SCISSORS" || playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "ROCK") {
         let message = "HAHAHA! " + computerSelection + " beats " + playerSelection.toUpperCase() + "!";
@@ -44,6 +43,7 @@ function game() {
     let j;
     for (i = 0, j = 0; i < 3 && j < 3;) {
         let result = singleRound();
+        console.log(result);
         if (result === 1) {
             console.log("You won this round!");
             ++i;
