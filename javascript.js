@@ -13,54 +13,72 @@ function getComputerChoice() {
     }
 }
 
-function singleRound() {
+const results = document.querySelector('.results');
+
+let message = document.createElement('div');
+message.classList.add('message-results');
+
+let score = document.createElement('div');
+score.classList.add('score');
+
+function singleRound(playerSelection) {
     let computerSelection = getComputerChoice();
-    let playerSelection = prompt("Type Rock, Paper, or Scissors!")
-    if (playerSelection.toUpperCase() !== "ROCK" && playerSelection.toUpperCase() !== "PAPER" && playerSelection.toUpperCase() !== "SCISSORS") {
-        alert("You need to type either rock, paper, or scissors!");
-        return singleRound();
-    }
-    if (playerSelection.toUpperCase() === computerSelection) {
-        alert("Tie! Play again!")
-        return singleRound();
-    }
-    else if(playerSelection.toUpperCase() === "ROCK" && computerSelection === "PAPER" || playerSelection.toUpperCase() === "PAPER" && computerSelection === "SCISSORS" || playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "ROCK") {
-        let message = "HAHAHA! " + computerSelection + " beats " + playerSelection.toUpperCase() + "!";
-        let result = 2;
-        console.log(message);
-        return result;    
-    }
-    else if(playerSelection.toUpperCase() === "ROCK" && computerSelection === "SCISSORS" || playerSelection.toUpperCase() === "PAPER" && computerSelection === "ROCK" || playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "PAPER") {
-        let message = "Good job! " + playerSelection.toUpperCase() + " beats " + computerSelection + "!";
-        let result = 1;
-        console.log(message);
+
+    if (playerSelection === computerSelection) {
+        message.textContent = 'Tie!';
+        results.appendChild(message);
+        let result = 0;
         return result;
     }
+    else if(playerSelection === "ROCK" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "SCISSORS" || playerSelection === "SCISSORS" && computerSelection === "ROCK") {
+        message.textContent = "You lose! " + computerSelection + " beats " + playerSelection.toUpperCase() + "!";
+        results.appendChild(message);
+        let result = 2;
+        return result;    
+    }
+    else if(playerSelection === "ROCK" && computerSelection === "SCISSORS" || playerSelection === "PAPER" && computerSelection === "ROCK" || playerSelection === "SCISSORS" && computerSelection === "PAPER") {
+        message.textContent = "You win! " + playerSelection.toUpperCase() + " beats " + computerSelection + "!";
+        results.appendChild(message);
+        let result = 1;
+        return result;
+    }
+    
 }
 
-function game() {
-    let i;
-    let j;
-    for (i = 0, j = 0; i < 3 && j < 3;) {
-        let result = singleRound();
-        console.log(result);
-        if (result === 1) {
-            console.log("You won this round!");
-            ++i;
-            console.log("Score: " + i + " : " + j);
-        }
-        else if (result === 2) {
-            console.log("You lost this round !");
-            ++j;
-            console.log("Score: " + i + " : " + j);
-        }
-    }
-    if (i === 3) {
-        console.log("YOU WON!");
-    }
-    else if (j === 3) {
-        console.log("YOU LOST!");
-    }
-}
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    singleRound("ROCK");
+});
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    singleRound("PAPER");
+});
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    singleRound("SCISSORS");
+});
 
-game();
+// function game() {
+//     let i;
+//     let j;
+//     for (i = 0, j = 0; i < 3 && j < 3;) {
+//         let result = singleRound();
+//         console.log(result);
+//         if (result === 1) {
+//             console.log("You won this round!");
+//             ++i;
+//             console.log("Score: " + i + " : " + j);
+//         }
+//         else if (result === 2) {
+//             console.log("You lost this round !");
+//             ++j;
+//             console.log("Score: " + i + " : " + j);
+//         }
+//     }
+//     if (i === 3) {
+//         console.log("YOU WON!");
+//     }
+//     else if (j === 3) {
+//         console.log("YOU LOST!");
+//     }
+// }
