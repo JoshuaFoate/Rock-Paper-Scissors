@@ -1,3 +1,16 @@
+const results = document.querySelector('.results');
+
+let message = document.createElement('div');
+message.classList.add('message-results');
+
+let score = document.createElement('div');
+score.classList.add('score');
+results.appendChild(score);
+
+let winner = document.createElement('div');
+winner.classList.add('winner');
+results.appendChild(winner);
+
 function getComputerChoice() {
     let min = Math.ceil(0);
     let max = Math.floor(3);
@@ -13,36 +26,43 @@ function getComputerChoice() {
     }
 }
 
-const results = document.querySelector('.results');
-
-let message = document.createElement('div');
-message.classList.add('message-results');
-
-let score = document.createElement('div');
-score.classList.add('score');
-
+i = 0;
+j = 0;
 function singleRound(playerSelection) {
     let computerSelection = getComputerChoice();
+    let result;
+    winner.textContent = '';
 
     if (playerSelection === computerSelection) {
         message.textContent = 'Tie!';
         results.appendChild(message);
-        let result = 0;
-        return result;
+        result = 0;
     }
     else if(playerSelection === "ROCK" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "SCISSORS" || playerSelection === "SCISSORS" && computerSelection === "ROCK") {
-        message.textContent = "You lose! " + computerSelection + " beats " + playerSelection.toUpperCase() + "!";
+        message.textContent = computerSelection + " beats " + playerSelection.toUpperCase() + "!";
         results.appendChild(message);
-        let result = 2;
-        return result;    
+        result = 2;
+        j++;
+        score.textContent = 'Score ' + i + ':' + j;
     }
     else if(playerSelection === "ROCK" && computerSelection === "SCISSORS" || playerSelection === "PAPER" && computerSelection === "ROCK" || playerSelection === "SCISSORS" && computerSelection === "PAPER") {
-        message.textContent = "You win! " + playerSelection.toUpperCase() + " beats " + computerSelection + "!";
+        message.textContent = playerSelection.toUpperCase() + " beats " + computerSelection + "!";
         results.appendChild(message);
-        let result = 1;
-        return result;
+        result = 1;
+        i++;
+        score.textContent = 'Score ' + i + ':' + j;
     }
-    
+    if (i === 3) {
+        winner.textContent = 'You win!';
+        i = 0;
+        j = 0;
+    }
+    else if (j === 3) {
+        winner.textContent = 'You lose!';
+        i = 0;
+        j = 0;
+    }
+    return;
 }
 
 const rock = document.querySelector('#rock');
@@ -58,27 +78,42 @@ scissors.addEventListener('click', () => {
     singleRound("SCISSORS");
 });
 
+// function game(result) {
+//     let i;
+//     let j;
+//     if (result === 1) {
+//         i += 1;
+//         score.textContent = i + ':' + j;
+//     }
+//     else if (result === 2) {
+//         j += 1;
+//         score.textContent = i + ':' + j;
+//     }
+//     if (i === 3) {
+//         winner.textContent('You win!')
+//     }
+//     else if (j === 3) {
+//         winner.textContent('You lose!')
+//     }
+// }
+
 // function game() {
 //     let i;
 //     let j;
 //     for (i = 0, j = 0; i < 3 && j < 3;) {
-//         let result = singleRound();
-//         console.log(result);
 //         if (result === 1) {
-//             console.log("You won this round!");
 //             ++i;
-//             console.log("Score: " + i + " : " + j);
+//             score.textContent("Score: " + i + " : " + j);
 //         }
 //         else if (result === 2) {
-//             console.log("You lost this round !");
 //             ++j;
-//             console.log("Score: " + i + " : " + j);
+//             score.textContent("Score: " + i + " : " + j);
 //         }
 //     }
 //     if (i === 3) {
-//         console.log("YOU WON!");
+//         winner.textContent("YOU WON!");
 //     }
 //     else if (j === 3) {
-//         console.log("YOU LOST!");
+//         winner.textContent("YOU LOST!");
 //     }
 // }
