@@ -78,25 +78,6 @@ scissors.addEventListener('click', () => {
     singleRound("SCISSORS");
 });
 
-// function game(result) {
-//     let i;
-//     let j;
-//     if (result === 1) {
-//         i += 1;
-//         score.textContent = i + ':' + j;
-//     }
-//     else if (result === 2) {
-//         j += 1;
-//         score.textContent = i + ':' + j;
-//     }
-//     if (i === 3) {
-//         winner.textContent('You win!')
-//     }
-//     else if (j === 3) {
-//         winner.textContent('You lose!')
-//     }
-// }
-
 // function game() {
 //     let i;
 //     let j;
