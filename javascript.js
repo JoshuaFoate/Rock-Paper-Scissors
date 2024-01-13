@@ -52,12 +52,12 @@ function singleRound(playerSelection) {
         i++;
         score.textContent = 'Score ' + i + ':' + j;
     }
-    if (i === 3) {
+    if (i === 5) {
         winner.textContent = 'You win!';
         i = 0;
         j = 0;
     }
-    else if (j === 3) {
+    else if (j === 5) {
         winner.textContent = 'You lose!';
         i = 0;
         j = 0;
