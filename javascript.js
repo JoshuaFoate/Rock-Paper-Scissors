@@ -1,3 +1,6 @@
+/* Creating the elements for results, message,
+   score, and the winner.
+*/
 const results = document.querySelector('.results');
 
 let message = document.createElement('div');
@@ -11,6 +14,9 @@ let winner = document.createElement('div');
 winner.classList.add('winner');
 results.appendChild(winner);
 
+/* Getting the computer's choice, random selection
+   between rock, paper and scissors.
+*/
 function getComputerChoice() {
     let min = Math.ceil(0);
     let max = Math.floor(3);
@@ -26,6 +32,11 @@ function getComputerChoice() {
     }
 }
 
+/* Function to play a single round of the game
+   after the player makes a choice. This function
+   records the score and tells the player whether
+   they won, lost or tied the round.
+*/
 i = 0;
 j = 0;
 function singleRound(playerSelection) {
@@ -65,6 +76,9 @@ function singleRound(playerSelection) {
     return;
 }
 
+/* Event listeners for the buttons to exectute
+   the singleRound function when clicked.
+*/
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', () => {
     singleRound("ROCK");
@@ -77,24 +91,3 @@ const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', () => {
     singleRound("SCISSORS");
 });
-
-// function game() {
-//     let i;
-//     let j;
-//     for (i = 0, j = 0; i < 3 && j < 3;) {
-//         if (result === 1) {
-//             ++i;
-//             score.textContent("Score: " + i + " : " + j);
-//         }
-//         else if (result === 2) {
-//             ++j;
-//             score.textContent("Score: " + i + " : " + j);
-//         }
-//     }
-//     if (i === 3) {
-//         winner.textContent("YOU WON!");
-//     }
-//     else if (j === 3) {
-//         winner.textContent("YOU LOST!");
-//     }
-// }
